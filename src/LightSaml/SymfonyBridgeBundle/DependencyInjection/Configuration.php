@@ -47,6 +47,7 @@ class Configuration implements ConfigurationInterface
                                 ->scalarNode('certificate')->end()
                                 ->scalarNode('key')->end()
                                 ->scalarNode('password')->end()
+                                ->scalarNode('entity_id')->end()
                             ->end()
                         ->end()
                     ->end()
