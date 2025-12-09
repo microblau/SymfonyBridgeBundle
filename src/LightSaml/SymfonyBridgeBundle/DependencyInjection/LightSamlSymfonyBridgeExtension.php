@@ -130,7 +130,7 @@ class LightSamlSymfonyBridgeExtension extends Extension
             $definition = new Definition(
                 'LightSaml\Store\Credential\X509FileCredentialStore',
                 [
-                    $config['own']['entity_id'],
+                    $data['entity_id'],
                     $data['certificate'],
                     $data['key'],
                     $data['password'],
