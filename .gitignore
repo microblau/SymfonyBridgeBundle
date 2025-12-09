@@ -40,3 +40,6 @@
 /*.cache
 
 tests/LightSaml/SymfonyBridgeBundle/Tests/Functional/cache/*
+
+# phpstorm 
+/.idea
