@@ -106,7 +106,7 @@ class LightSamlSymfonyBridgeExtension extends Extension
             }
         } else {
             $credentials = $config['own']['credentials'];
-            foreach ($credentials as $index => $credential) {
+            foreach ($credentials as $credential) {
                 $entityId = $credential['entity_id'];
                 $definition = $container->getDefinition('lightsaml.own.entity_descriptor_provider');
                 $definition
