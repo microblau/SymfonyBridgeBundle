@@ -105,15 +105,18 @@ class LightSamlSymfonyBridgeExtension extends Extension
                 $this->setFactoryCompatibleWay($definition, 'LightSaml\Provider\EntityDescriptor\FileEntityDescriptorProviderFactory', 'fromEntityDescriptorFile');
             }
         } else {
-            $definition = $container->getDefinition('lightsaml.own.entity_descriptor_provider');
-            $definition
-                ->addArgument('%lightsaml.own.entity_id%')
-                ->addArgument(new Reference('router'))
-                ->addArgument('%lightsaml.route.login_check%')
-                ->addArgument(null)
-                ->addArgument(new Reference('lightsaml.own.credential_store'))
-            ;
-            $this->setFactoryCompatibleWay($definition, 'LightSaml\SymfonyBridgeBundle\Factory\OwnEntityDescriptorProviderFactory', 'build');
+            $credentials = $config['own']['credentials'];
+            foreach ($credentials as $index => $credential) {
+                $entityId = $credential['entity_id'];
+                $definition = $container->getDefinition('lightsaml.own.entity_descriptor_provider');
+                $definition
+                    ->addArgument($entityId)
+                    ->addArgument(new Reference('router'))
+                    ->addArgument('%lightsaml.route.login_check%')
+                    ->addArgument(null)
+                    ->addArgument(new Reference('lightsaml.own.credential_store'));
+                $this->setFactoryCompatibleWay($definition, 'LightSaml\SymfonyBridgeBundle\Factory\OwnEntityDescriptorProviderFactory', 'build');
+            }
         }
     }
 
